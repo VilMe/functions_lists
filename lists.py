@@ -17,7 +17,8 @@ def print_list(items):
         9
     """
 
-    print("the wrong thing")
+    for item in items:
+        print(item)
 
 
 def long_words(words):
@@ -36,8 +37,11 @@ def long_words(words):
         >>> long_words(["all", "are", "tiny"])
         []
     """
-
-    return ['the wrong thing']
+    longer_words = []
+    for word in words:
+        if len(word) > 4:
+            longer_words.append(word)
+    return longer_words
 
 
 def n_long_words(words, n):
@@ -53,8 +57,11 @@ def n_long_words(words, n):
         >>> n_long_words(["I", "like", "apples", "bananas", "you"], 5)
         ['apples', 'bananas']
     """
-
-    return ['the wrong thing']
+    longer_words = []
+    for word in words:
+        if len(word) > n:
+            longer_words.append(word)
+    return longer_words
 
 
 def smallest_int(numbers):
@@ -73,9 +80,14 @@ def smallest_int(numbers):
         >>> smallest_int([]) is None
         True
     """
-
-    return 100
-
+    if numbers != []:
+        min_int = numbers[0]
+        for number in numbers[1:]:
+            if number < min_int:
+                min_int = number
+        return min_int
+    else:
+        return None
 
 def largest_int(numbers):
     """Find the largest integer in a list of integers and return it.
@@ -93,8 +105,15 @@ def largest_int(numbers):
         >>> largest_int([]) is None
         True
     """
+    if numbers != []:    
+        max_int = numbers[0]
+        for number in numbers[1:]:
+            if number > max_int:
+                max_int = number
+    else:
+        return None
 
-    return 0
+    return max_int
 
 
 def halvesies(numbers):
@@ -111,8 +130,10 @@ def halvesies(numbers):
         >>> halvesies([1, 5])
         [0.5, 2.5]
     """
-
-    return []
+    half_val = []
+    for number in numbers:
+        half_val.append(number / 2)
+    return half_val
 
 
 def word_lengths(words):
@@ -123,8 +144,10 @@ def word_lengths(words):
         >>> word_lengths(["hello", "hey", "hello", "spam"])
         [5, 3, 5, 4]
     """
-
-    return []
+    word_len = []
+    for word in words:
+        word_len.append(len(word))
+    return word_len
 
 
 def sum_numbers(numbers):
@@ -142,8 +165,10 @@ def sum_numbers(numbers):
         >>> sum_numbers([])
         0
     """
-
-    return None
+    num_sum = 0
+    for number in numbers:
+        num_sum += number
+    return num_sum
 
 
 def mult_numbers(numbers):
@@ -165,8 +190,10 @@ def mult_numbers(numbers):
         >>> mult_numbers([])
         1
     """
-
-    return None
+    product = 1
+    for number in numbers:
+        product *= number
+    return product
 
 
 def join_strings(words):
@@ -184,8 +211,10 @@ def join_strings(words):
         >>> join_strings([])
         ''
     """
-
-    return "Not the right thing"
+    joint = ''
+    for word in words:
+        joint += word
+    return joint
 
 
 def average(numbers):
@@ -206,8 +235,12 @@ def average(numbers):
     (Think of the best way to handle an empty input list, though,
     a feel free to provide a good solution here.)
     """
-
-    return 0
+    total = 0
+    count = 0
+    for number in numbers:
+        total += number
+        count += 1
+    return total/count
 
 
 def join_strings_with_comma(words):
@@ -226,8 +259,17 @@ def join_strings_with_comma(words):
         >>> join_strings_with_comma(["Pretzel"])
         'Pretzel'
     """
-
-    return ""
+    joint = ''
+    i = 0
+    max_len = len(words)
+    while i < max_len:
+        if i == max_len - 1:
+            joint += words[i]
+        else:
+            joint += words[i]
+            joint += ', '
+        i += 1
+    return joint
 
 
 def reverse_list(items):
@@ -250,8 +292,10 @@ def reverse_list(items):
         >>> orig
         ['apple', 'berry', 'cherry']
     """
-
-    return []
+    rev_list = []
+    for item in items[::-1]:
+        rev_list.append(item)
+    return rev_list
 
 
 def reverse_list_in_place(items):
@@ -273,8 +317,12 @@ def reverse_list_in_place(items):
         >>> orig
         ['I', 'love', 'cookies']
     """
+    list_middle = range(len(items) // 2)
+    list_length = len(items)
+    for i in list_middle:
+        items[i], items[list_length - 1 - i] = items[list_length - 1 - i], items[i]
 
-    return []
+    return
 
 
 def duplicates(items):
@@ -299,9 +347,28 @@ def duplicates(items):
         >>> orig
         ['apple', 'apple', 'berry']
     """
+    dup_list = []
+    count_dict = {}
+    for item in items:
+        if item in count_dict:
+            count = count_dict[item]
+            count += 1
+            count_dict[item] = count
+        else:
+            count_dict[item] = 1
+    for item, count in count_dict.items():
+        if count > 1:
+            dup_list.append(item)
+    return dup_list
 
-    return []
 
+
+
+def help_function(word, letter):
+    for i in range(len(word)):
+        if word[i] == letter:
+            return i
+    return None
 
 def find_letter_indices(words, letter):
     """Return list of indices where letter appears in each word.
@@ -327,8 +394,11 @@ def find_letter_indices(words, letter):
     ("o" does not appear in "jumps", so the result for that input is
     `None`.)
     """
+    index_list = []
+    for word in words:
+        index_list.append(help_function(word, letter))
 
-    return []
+    return index_list
 
 
 #####################################################################
