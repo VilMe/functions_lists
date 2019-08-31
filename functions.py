@@ -141,7 +141,8 @@ def sign_and_parity(number):
         sign = 'Positive'
     else: 
         sign = 'Negative'
-        return [sign, parity]
+    return [sign, parity]
+
 def print_sign_parity(num):
     sign, parity = sign_and_parity(num)
     print(sign)
@@ -155,7 +156,8 @@ def print_sign_parity(num):
 # 1. Write a function called full_title that takes a name and a job title as
 #    parameters, making it so the job title defaults to "Engineer" if a job
 #    title is not passed in. Return the person's title and name in one string.
-
+def full_title(name, title='Engineer'):
+    return(title + ' ' + name)
 # 2. Write a function called write_letter that, given a recipient name & job
 #    title and a sender name, prints the following letter:
 #
@@ -164,7 +166,9 @@ def print_sign_parity(num):
 #
 #    Use the function from #1 to construct the full title for the letter's
 #    greeting.
-
+def write_letter(name, title, sender):
+    full_name = full_title(name, title)
+    print(f'Dear {full_name}, I think you are amazing! Sincerely, {sender}')
 
 ###############################################################################
 
